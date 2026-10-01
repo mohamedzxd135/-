@@ -1,0 +1,2145 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>مشاهد آخر الزمان — الملحمة الشاملة والأحداث الكبرى</title>
+    <style>
+        /* ==========================================================================
+           1. CORE STYLES & THEME VARIABLES
+           ========================================================================== */
+        :root {
+            --bg-primary: #0a0d12;
+            --bg-secondary: #121824;
+            --bg-card: #1a2234;
+            --bg-card-hover: #222d44;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-gold: #f59e0b;
+            --accent-gold-glow: rgba(245, 158, 11, 0.25);
+            --accent-emerald: #10b981;
+            --accent-crimson: #ef4444;
+            --accent-blue: #3b82f6;
+            --border-color: #2e3a52;
+            --border-highlight: #d97706;
+            --shadow-main: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --font-size-base: 16px;
+            --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Amiri', 'Traditional Arabic', serif;
+        }
+
+        body.light-theme {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #f1f5f9;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f8fafc;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --border-color: #cbd5e1;
+            --border-highlight: #b45309;
+            --shadow-main: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Reset & Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            font-size: var(--font-size-base);
+            line-height: 1.8;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* App Container */
+        #app {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* ==========================================================================
+           2. HEADER & NAVIGATION BAR
+           ========================================================================== */
+        header.app-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(10, 13, 18, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+
+        body.light-theme header.app-header {
+            background-color: rgba(248, 250, 252, 0.92);
+        }
+
+        .header-title-box {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            cursor: pointer;
+        }
+
+        .header-icon {
+            width: 32px;
+            height: 32px;
+            color: var(--accent-gold);
+            flex-shrink: 0;
+        }
+
+        .header-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .btn-icon {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+        }
+
+        .btn-icon:active {
+            transform: scale(0.95);
+            background: var(--bg-card-hover);
+        }
+
+        .btn-mode-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0 0.8rem;
+            height: 40px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(217, 119, 6, 0.25));
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        /* ==========================================================================
+           3. MAIN LAYOUT & CONTROLLER VIEWS
+           ========================================================================== */
+        main.main-content {
+            flex: 1;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        /* Mode Containers */
+        .view-mode {
+            display: none;
+            width: 100%;
+        }
+
+        .view-mode.active {
+            display: block;
+        }
+
+        /* ==========================================================================
+           4. CINEMATIC SCENE VIEWER MODE
+           ========================================================================== */
+        .scene-viewer-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        /* Top Scene Bar */
+        .scene-meta-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            background: var(--bg-card);
+            padding: 0.8rem 1.2rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .scene-badge-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .badge-gold {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--accent-gold);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .badge-emerald {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-emerald);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .badge-crimson {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--accent-crimson);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .scene-counter {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+
+        /* Main Scene Stage Card */
+        .scene-stage-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: var(--shadow-main);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* SVG Art Container */
+        .scene-art-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            touch-action: pan-y;
+        }
+
+        @media (max-width: 600px) {
+            .scene-art-wrapper {
+                aspect-ratio: 4 / 3;
+            }
+        }
+
+        .scene-art-wrapper svg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Overlay Watermark/Tag */
+        .scene-art-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(10, 13, 18, 0.95), transparent);
+            padding: 1.5rem 1.2rem 0.8rem;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .scene-art-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .scene-art-event {
+            font-size: 0.88rem;
+            color: #e2e8f0;
+            line-height: 1.4;
+        }
+
+        /* Stage Content & Tabs */
+        .scene-stage-body {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        /* Visual Details Grid */
+        .visual-plan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 0.8rem;
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .visual-plan-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .visual-plan-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .visual-plan-value {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Scene Text Content Box */
+        .scene-text-box {
+            background: var(--bg-card);
+            border-right: 4px solid var(--accent-gold);
+            padding: 1.2rem;
+            border-radius: var(--radius-sm);
+            font-size: calc(var(--font-size-base) * 1.02);
+            line-height: 1.9;
+        }
+
+        .scene-text-box p {
+            margin-bottom: 1rem;
+        }
+
+        .scene-text-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Hadith & Quran Special Formatting */
+        .hadith-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(16, 185, 129, 0.05));
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: var(--radius-md);
+            padding: 1rem 1.2rem;
+            margin: 1.2rem 0;
+            font-weight: 600;
+            color: var(--text-primary);
+            position: relative;
+        }
+
+        .quran-verse {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: var(--radius-md);
+            padding: 1rem 1.2rem;
+            margin: 1.2rem 0;
+            font-family: 'Amiri', 'Traditional Arabic', serif;
+            font-size: 1.2em;
+            text-align: center;
+            color: var(--accent-emerald);
+        }
+
+        .dialogue-card {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .dialogue-title {
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .dialogue-line {
+            margin-bottom: 0.4rem;
+            padding-right: 0.8rem;
+            border-right: 2px solid var(--border-color);
+        }
+
+        .dialogue-speaker {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Bottom Controls Bar */
+        .scene-nav-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .btn-nav-action {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            height: 48px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-nav-action:active {
+            transform: scale(0.97);
+            background: var(--bg-card-hover);
+        }
+
+        .btn-nav-action.primary {
+            background: linear-gradient(135deg, var(--accent-gold), #d97706);
+            color: #000;
+            border: none;
+        }
+
+        .btn-nav-action:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Quick Scene Selector Drawer/Grid */
+        .scene-picker-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .scene-picker-header {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .scene-grid-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+            gap: 0.4rem;
+        }
+
+        .btn-scene-num {
+            height: 40px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-scene-num.active {
+            background: var(--accent-gold);
+            color: #000;
+            border-color: var(--accent-gold);
+        }
+
+        /* ==========================================================================
+           5. FULL BOOK READING MODE
+           ========================================================================== */
+        .book-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Part Divider Headers */
+        .part-header {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(18, 24, 36, 0.9));
+            border-right: 5px solid var(--accent-gold);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            border-left: 1px solid var(--border-color);
+            margin-top: 1.5rem;
+        }
+
+        .part-number {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .part-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        /* Chapter Section */
+        .chapter-section {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-main);
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .chapter-header-box {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            flex-wrap: wrap;
+        }
+
+        .chapter-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            line-height: 1.5;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .btn-scene-jump {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 0.4rem 0.8rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-scene-jump:active {
+            transform: scale(0.95);
+            background: var(--accent-gold);
+            color: #000;
+        }
+
+        /* In-Book Scene Visual Card */
+        .book-scene-visual-card {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .book-scene-img-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            overflow: hidden;
+        }
+
+        @media (max-width: 600px) {
+            .book-scene-img-wrap {
+                aspect-ratio: 16 / 10;
+            }
+        }
+
+        .book-scene-img-wrap svg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .book-scene-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 13, 18, 0.4);
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding: 1rem;
+            opacity: 0.9;
+            transition: opacity 0.2s ease;
+        }
+
+        .overlay-scene-tag {
+            background: rgba(0,0,0,0.75);
+            color: #fff;
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .overlay-action {
+            background: var(--accent-gold);
+            color: #000;
+            padding: 0.35rem 0.8rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .book-scene-caption {
+            padding: 0.8rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .chapter-body {
+            font-size: calc(var(--font-size-base) * 1.02);
+            line-height: 1.95;
+            color: var(--text-primary);
+        }
+
+        .chapter-body p {
+            margin-bottom: 1.1rem;
+        }
+
+        .chapter-body ul {
+            margin: 1rem 1.5rem 1.2rem 0;
+        }
+
+        .chapter-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Custom Table Styling */
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .custom-table th {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--accent-gold);
+            padding: 0.8rem 1rem;
+            text-align: right;
+            font-weight: 700;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .custom-table td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .custom-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ==========================================================================
+           6. SEARCH & TOC DRAWER MODAL
+           ========================================================================== */
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .drawer-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .drawer-content {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: 85%;
+            max-width: 380px;
+            background: var(--bg-card);
+            border-left: 1px solid var(--border-color);
+            z-index: 2001;
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+        }
+
+        .drawer-overlay.active .drawer-content {
+            transform: translateX(0);
+        }
+
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .drawer-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+        }
+
+        .search-input-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-input {
+            width: 100%;
+            height: 42px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 0 2.5rem 0 1rem;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-gold);
+        }
+
+        .search-icon-inside {
+            position: absolute;
+            right: 0.8rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .toc-list {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            padding-left: 0.3rem;
+        }
+
+        .toc-item {
+            padding: 0.7rem 0.9rem;
+            background: var(--bg-secondary);
+            border: 1px solid transparent;
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            line-height: 1.4;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .toc-item:active, .toc-item.active {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+            background: rgba(245, 158, 11, 0.08);
+        }
+
+        .toc-item-num {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            background: var(--bg-primary);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        /* Floating Action Buttons */
+        .fab-container {
+            position: fixed;
+            bottom: 1.2rem;
+            left: 1.2rem;
+            z-index: 990;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .btn-fab {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            color: #000;
+            border: none;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-fab:active {
+            transform: scale(0.9);
+        }
+
+        /* Footer */
+        footer.app-footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 2rem;
+        }
+
+        /* SVG Icons Inline Helper */
+        .svg-icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            stroke-width: 0;
+            stroke: currentColor;
+            fill: currentColor;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <!-- HEADER NAVBAR -->
+    <header class="app-header">
+        <div class="header-title-box" onclick="switchMode('scene')">
+            <svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            <div class="header-title">مشاهد آخر الزمان</div>
+        </div>
+
+        <div class="header-controls">
+            <!-- Mode Switcher -->
+            <button class="btn-mode-toggle" onclick="toggleViewMode()" id="modeToggleBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 3v18"/><path d="M3 7.5h4"/><path d="M3 12h18"/><path d="M3 16.5h4"/><path d="M17 3v18"/></svg>
+                <span id="modeToggleText">عرض الكتاب</span>
+            </button>
+
+            <!-- Font Size Toggle -->
+            <button class="btn-icon" onclick="changeFontSize(1)" title="تكبير الخط">A+</button>
+            <button class="btn-icon" onclick="changeFontSize(-1)" title="تصغير الخط">A-</button>
+
+            <!-- Theme Toggle -->
+            <button class="btn-icon" onclick="toggleTheme()" id="themeBtn" title="تبديل المظهر">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+            </button>
+
+            <!-- TOC & Search Menu -->
+            <button class="btn-icon" onclick="toggleTocDrawer()" title="الفهرس والبحث">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN APP CONTENT -->
+    <main class="main-content">
+
+        <!-- ========================================== -->
+        <!-- MODE 1: CINEMATIC SCENE VIEWER             -->
+        <!-- ========================================== -->
+        <div id="sceneViewMode" class="view-mode active">
+            <div class="scene-viewer-container">
+
+                <!-- Meta Top Bar -->
+                <div class="scene-meta-bar">
+                    <div class="scene-badge-group">
+                        <span class="badge badge-gold" id="scenePartBadge">الجزء 1</span>
+                        <span class="badge badge-emerald" id="sceneVisualBadge">مشهد سينمائي تعبيري</span>
+                    </div>
+                    <div class="scene-counter" id="sceneCounterText">المشهد 1 من 32</div>
+                </div>
+
+                <!-- Main Stage Card -->
+                <div class="scene-stage-card">
+                    <!-- SVG Art Box with Mobile Touch Swipe -->
+                    <div class="scene-art-wrapper" id="sceneArtWrapper" ontouchstart="handleTouchStart(event)" touchend="handleTouchEnd(event)">
+                        <div id="sceneSvgContainer" style="width:100%; height:100%;"></div>
+                        <div class="scene-art-overlay">
+                            <div class="scene-art-title" id="sceneTitleText">عنوان المشهد</div>
+                            <div class="scene-art-event" id="sceneEventText">الحدث الأساسي للمشهد</div>
+                        </div>
+                    </div>
+
+                    <!-- Stage Details & Text -->
+                    <div class="scene-stage-body">
+                        <!-- Visual Details Plan -->
+                        <div class="visual-plan-grid">
+                            <div class="visual-plan-item">
+                                <span class="visual-plan-label">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                                    الشخصيات والظلال:
+                                </span>
+                                <span class="visual-plan-value" id="planChars">-</span>
+                            </div>
+                            <div class="visual-plan-item">
+                                <span class="visual-plan-label">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                    البيئة والمكان:
+                                </span>
+                                <span class="visual-plan-value" id="planEnv">-</span>
+                            </div>
+                            <div class="visual-plan-item">
+                                <span class="visual-plan-label">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                                    الإضاءة والأجواء:
+                                </span>
+                                <span class="visual-plan-value" id="planLighting">-</span>
+                            </div>
+                            <div class="visual-plan-item">
+                                <span class="visual-plan-label">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/></svg>
+                                    الطابع الإيماني والوجداني:
+                                </span>
+                                <span class="visual-plan-value" id="planMood">-</span>
+                            </div>
+                        </div>
+
+                        <!-- Main Chapter Text -->
+                        <div class="scene-text-box" id="sceneContentHtml">
+                            <!-- Injected JS Content -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="scene-nav-controls">
+                    <button class="btn-nav-action" onclick="prevScene()" id="btnPrevScene">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+                        <span>المشهد السابق</span>
+                    </button>
+                    <button class="btn-nav-action primary" onclick="nextScene()" id="btnNextScene">
+                        <span>المشهد التالي</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+                    </button>
+                </div>
+
+                <!-- Scene Grid Quick Picker -->
+                <div class="scene-picker-container">
+                    <div class="scene-picker-header">
+                        <span>انتقال سريع للمشاهد (1 - 32):</span>
+                        <span id="slideshowStateText" style="color:var(--accent-gold); cursor:pointer;" onclick="toggleSlideshow()">▶ تشغيل تلقائي</span>
+                    </div>
+                    <div class="scene-grid-buttons" id="scenePickerGrid">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- MODE 2: FULL BOOK READING MODE             -->
+        <!-- ========================================== -->
+        <div id="bookViewMode" class="view-mode">
+            <div class="book-container" id="bookChaptersContainer">
+                <!-- Rendered dynamically or via JS template -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FLOATING BUTTONS -->
+    <div class="fab-container">
+        <button class="btn-fab" onclick="scrollToTop()" title="للأعلى">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 15-6-6-6 6"/></svg>
+        </button>
+    </div>
+
+    <!-- TOC & SEARCH DRAWER MODAL -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="toggleTocDrawer(false)">
+        <div class="drawer-content" onclick="event.stopPropagation()">
+            <div class="drawer-header">
+                <div class="drawer-title">فهرس الكتاب والبحث</div>
+                <button class="btn-icon" onclick="toggleTocDrawer(false)">&times;</button>
+            </div>
+
+            <!-- Search Input -->
+            <div class="search-input-box">
+                <input type="text" class="search-input" id="searchInput" placeholder="ابحث عن كلمة، حديث، أو مشهد..." oninput="filterTocAndContent()">
+                <svg class="search-icon-inside" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </div>
+
+            <!-- TOC Items List -->
+            <div class="toc-list" id="tocListContainer">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="app-footer">
+        <p>مشاهد آخر الزمان — النسخة المستقلة الكاملة (32 مشهداً)</p>
+        <p style="margin-top:0.3rem; font-size:0.78rem;">تعمل كلياً بدون إنترنت وعلى جميع أجهزة Android و Chrome</p>
+    </footer>
+</div>
+
+<!-- ========================================================================== -->
+<!-- JAVASCRIPT DATA & INTERACTIVITY ENGINE                                    -->
+<!-- ========================================================================== -->
+<script>
+/* ==========================================================================
+   1. EMBEDDED SCENE DATA & SVG VECTOR GENERATOR
+   ========================================================================== */
+
+// Helper to generate dynamic atmospheric vector illustrations for all 32 scenes
+function generateSceneSvg(theme, title) {
+    const bgGradients = {
+        fitan_early: ['#0f0c1b', '#2d1b4e', '#61234e', '#d97706'],
+        furat_gold: ['#120800', '#3a1800', '#854200', '#fbbf24'],
+        table_balance: ['#051923', '#003554', '#006494', '#10b981'],
+        mahdi_solitude: ['#030712', '#0f172a', '#1e1b4b', '#6366f1'],
+        bayah_kaaba: ['#0a0a0a', '#1a1000', '#3a2500', '#f59e0b'],
+        black_banners: ['#020617', '#1e293b', '#334155', '#94a3b8'],
+        cross_truce: ['#111827', '#1f2937', '#374151', '#d97706'],
+        dabiq_battle: ['#1a0505', '#450a0a', '#7f1d1d', '#f59e0b'],
+        constantinople_takbeer: ['#02131d', '#073b4c', '#118ab2', '#06d6a0'],
+        tamim_island: ['#030712', '#111827', '#1f2937', '#3b82f6'],
+        dajjal_fitnah: ['#180202', '#3f0707', '#7f1d1d', '#ef4444'],
+        believer_youth: ['#0a0a0c', '#1c1917', '#44403c', '#10b981'],
+        white_minaret_descent: ['#050b14', '#0f2342', '#1d4ed8', '#fbbf24'],
+        babb_ludd: ['#0c0a09', '#292524', '#78350f', '#f59e0b'],
+        yajooj_swarms: ['#0f0505', '#2d0a0a', '#581c1c', '#dc2626'],
+        barakah_era: ['#022c22', '#064e3b', '#047857', '#10b981'],
+        sun_west: ['#180000', '#4a0404', '#991b1b', '#f59e0b'],
+        quran_lift: ['#030712', '#111827', '#312e81', '#a855f7'],
+        aden_fire: ['#1f0000', '#5c0000', '#b91c1c', '#f97316'],
+        soor_trumpet: ['#05050a', '#1a0b2e', '#4c1d95', '#fbbf24'],
+        mahshar_plains: ['#1e1b18', '#44403c', '#78716c', '#f59e0b'],
+        shafaah_arsh: ['#030712', '#1e1b4b', '#4338ca', '#fbbf24'],
+        mizan_books: ['#0a0f1d', '#1e293b', '#3b82f6', '#f59e0b'],
+        card_tawheed: ['#030712', '#14532d', '#15803d', '#fbbf24'],
+        nawabi_pond: ['#022030', '#005f73', '#0a9396', '#94d2bd'],
+        noor_munafiq: ['#020617', '#0f172a', '#1e293b', '#10b981'],
+        sirat_bridge: ['#180202', '#450a0a', '#991b1b', '#10b981'],
+        jannah_gate: ['#022c22', '#065f46', '#047857', '#fbbf24'],
+        iblis_sermon: ['#0d0000', '#330000', '#660000', '#dc2626'],
+        slaughter_death: ['#0f172a', '#334155', '#475569', '#fbbf24'],
+        jannah_life: ['#022c22', '#064e3b', '#0f766e', '#38bdf8'],
+        divine_vision: ['#030712', '#1e1b4b', '#4338ca', '#f59e0b']
+    };
+
+    const colors = bgGradients[theme] || bgGradients.fitan_early;
+
+    return `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="100%" height="100%">
+        <defs>
+            <linearGradient id="bgGrad_${theme}" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="${colors[0]}" />
+                <stop offset="40%" stop-color="${colors[1]}" />
+                <stop offset="75%" stop-color="${colors[2]}" />
+                <stop offset="100%" stop-color="${colors[3]}" />
+            </linearGradient>
+            <radialGradient id="sunGlow_${theme}" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="${colors[3]}" stop-opacity="0.9" />
+                <stop offset="50%" stop-color="${colors[2]}" stop-opacity="0.4" />
+                <stop offset="100%" stop-color="${colors[0]}" stop-opacity="0" />
+            </radialGradient>
+            <filter id="blurGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="15" />
+            </filter>
+        </defs>
+
+        <!-- Sky Background -->
+        <rect width="1280" height="720" fill="url(#bgGrad_${theme})" />
+
+        <!-- Celestial Atmosphere Glow -->
+        <circle cx="640" cy="300" r="350" fill="url(#sunGlow_${theme})" />
+
+        <!-- Horizon Mountains & Environmental Silhouette -->
+        <path d="M0,520 Q200,450 450,510 T900,480 Q1100,440 1280,500 L1280,720 L0,720 Z" fill="#05070a" opacity="0.85" />
+        <path d="M0,570 Q300,510 650,560 T1280,540 L1280,720 L0,720 Z" fill="#020305" />
+
+        <!-- Decorative Rays / Light Beam Accent -->
+        <polygon points="640,0 580,720 700,720" fill="${colors[3]}" opacity="0.12" />
+        <polygon points="640,0 420,720 500,720" fill="${colors[3]}" opacity="0.08" />
+        <polygon points="640,0 780,720 860,720" fill="${colors[3]}" opacity="0.08" />
+
+        <!-- Atmospheric Dust Stars / Particles -->
+        <circle cx="200" cy="120" r="2" fill="#fff" opacity="0.6" />
+        <circle cx="450" cy="180" r="1.5" fill="#fff" opacity="0.4" />
+        <circle cx="850" cy="100" r="2.5" fill="#fff" opacity="0.7" />
+        <circle cx="1050" cy="220" r="1.8" fill="#fff" opacity="0.5" />
+
+        <!-- Symbolic Title Banner Frame -->
+        <rect x="340" y="620" width="600" height="50" rx="25" fill="rgba(10,13,18,0.7)" stroke="${colors[3]}" stroke-width="1.5" />
+        <text x="640" y="652" font-family="system-ui, sans-serif" font-size="22" font-weight="bold" fill="${colors[3]}" text-anchor="middle">${title}</text>
+    </svg>`;
+}
+
+// Complete 32 Scenes Array
+const scenesData = [
+  // PART 1
+  {
+    id: 1,
+    partNum: 1,
+    partTitle: "الفتن والعلامات الصغرى — تمهيد لآخر الزمان",
+    chapterNum: 1,
+    chapterTitle: "الفصل الأول: إرهاصات الفتنة الأولى — حين يُرفع العلم ويظهر الجهل",
+    visualPlan: {
+      title: "إرهاصات الفتن وتطاول البنيان والهرج",
+      event: "بداية التحولات الاجتماعية والأخلاقية، رفع العلم الشرعي، تسارع الزمن وتطاول البنيان.",
+      characters: "ظلال حشود بشرية متباعدة في اضطراب، لا تظهر ملامح فردية.",
+      environment: "أفق مدينة قديمة تعلوها أطراف مبانٍ شاهقة متسارعة، غبار داكن يغطي سماء الغروب.",
+      lighting: "إضاءة غسقية موحشة، تدرجات رمادية وذهبية خافتة ترمز لغروب الأمان واستشراء الفتن.",
+      mood: "هيبة وقلق وتغير كوني وتاريخي عميق."
+    },
+    svgTheme: "fitan_early",
+    contentHtml: `
+      <p>قبل أن تبدأ السلسلة العريضة للتغيرات المادية والروحية في الأرض، كانت الدنيا لا تزال في مسارها الظاهري، ولكن باطنها بدأ يتآكل.</p>
+      <div class="hadith-box">
+          قال رسول الله ﷺ: «إِنَّ بَيْنَ يَدَيِ السَّاعَةِ فِتَنًا كَقِطَعِ اللَّيْلِ الْمُظْلِمِ، يُصْبِحُ الرَّجُلُ فِيهَا مُؤْمِنًا وَيُمْسِي كَافِرًا، وَيُمْسِي مُؤْمِنًا وَيُصْبِحُ كَافِرًا».
+      </div>
+      <p>إن التحولات الكبرى التي تصيب العالم البشري والكوني لا تقع فجأة دون إرهاصات، بل تتدرج من اختلالات اجتماعية وأخلاقية. وهذه الإرهاصات الأولى لم تكن حوادث متفرقة، بل كانت سلسلة متصلة المظاهر، محكمة الترتيب.</p>
+      <p><strong>أول ما بدأ التصدع فيه:</strong> رفع العلم الشرعي الفقهي، واستشراء الجهل، وقلة العلماء الربانيين. وفي الوقت نفسه، كثر الهرج — وهو القتل المستشري الذي لا يدري فيه القاتل فيم قَتَل، ولا المقتول فيم قُتِل.</p>
+      <div class="hadith-box">
+          «لاَ تَقُومُ السَّاعَةُ حَتَّى يُبْعَثَ دَجَّالُونَ كَذَّابُونَ قَرِيبٌ مِنْ ثَلاَثِينَ، كُلُّهُمْ يَزْعُمُ أَنَّهُ رَسُولُ اللَّهِ».
+      </div>
+      <p>وظهر دجالون كذابون، وانتشر الربا والزنا والمعازف والخمور واستحلالها، وضياع الأمانة، وتقارب الزمان حيث تصبح السنة كالشهر والشهر كالجُمُعة.</p>
+    `
+  },
+  {
+    id: 2,
+    partNum: 1,
+    partTitle: "الفتن والعلامات الصغرى — تمهيد لآخر الزمان",
+    chapterNum: 2,
+    chapterTitle: "الفصل الثاني: الفتن المتوسطة — من القتل والهرج إلى انحسار الفرات",
+    visualPlan: {
+      title: "انحسار نهر الفرات عن جبل الذهب وعودة المروج",
+      event: "انحسار مياه الفرات وانكشاف جبل الذهب واقتتال الناس حوله، وعودة الجزيرة مروجاً.",
+      characters: "ظلال جموع من الفرسان والمشاة يتدافعون نحو ضفة النهر الجافة.",
+      environment: "مجرى نهر واسع ينحسر مياهه ليكشف عن كتلة صخرية ذهبية ساطعة.",
+      lighting: "شمس ساطعة تنعكس على الذهب المشع وسط سماء عاصفة، بريق معدني مذهل.",
+      mood: "فتنة عارمة، إغراء دنيوي مهلك، وصراع بشري مدمر."
+    },
+    svgTheme: "furat_gold",
+    contentHtml: `
+      <p>ثم دخلت الدنيا في طور جديد من الفتن، فتن متوسطة لا تقل هولاً عن غيرها.</p>
+      <div class="hadith-box">
+          قال النبي ﷺ: «يُوشِكُ الْفُرَاتُ أَنْ يَحْسِرَ عَنْ جَبَلٍ مِنْ ذَهَبٍ، فَمَنْ حَضَرَهُ فَلاَ يَأْخُذْ مِنْهُ شَيْئًا».
+      </div>
+      <p>وفي هذه الفتنة، يقتتل الناس عند جبل الذهب، فيُقتل من كل مائة تسعة وتسعون رجلاً، ويقول كل رجل منهم في نفسه: "لعلّي أكون أنا الذي أرجو وأنا الذي آخذ الذهب".</p>
+      <p><strong>عودة جزيرة العرب مروجاً وأنهاراً:</strong> ومن العلامات الصغرى التي لم تقع بعد عودة جزيرة العرب مروجاً وأنهاراً كما كانت. قال ﷺ: «لاَ تَقُومُ السَّاعَةُ حَتَّى تَكُونَ جَزِيرَةُ الْعَرَبِ مُرُوجًا وَأَنْهَارًا».</p>
+    `
+  },
+  {
+    id: 3,
+    partNum: 1,
+    partTitle: "الفتن والعلامات الصغرى — تمهيد لآخر الزمان",
+    chapterNum: 3,
+    chapterTitle: "الفصل الثالث: جدول التحولات الكبرى — الآلية والنتائج",
+    visualPlan: {
+      title: "التمايز الكوني وتميز الفسطاطين",
+      event: "فرز البشرية الكامل إلى فسطاطين، وتغير المناخ وانبثاق الأنهار في الجزيرة العربية.",
+      characters: "لا شخوص محددة، تمايز رمزي لكتلتين بشريتين تحت ضياء وظلام.",
+      environment: "انقسام أفقي رمزي بين طبيعة خضراء يانعة ونهر متدفق، وجانب آخر صحراوي مضطرب.",
+      lighting: "تباين حاد بين نور زمردي هادئ ونور قرمزي ناري.",
+      mood: "محطة تأملية استقصائية في سنن التحول الإلهي."
+    },
+    svgTheme: "table_balance",
+    contentHtml: `
+      <p>توضح هذه المرحلة المفاصل التاريخية الكبرى التي تمهد للأحداث العظام وتفرز الناس قبل ظهور المصلح الأكبر:</p>
+      <table class="custom-table">
+          <thead>
+              <tr>
+                  <th>التحول / العلامة</th>
+                  <th>الآلية والظاهرة الكونية/الاجتماعية</th>
+                  <th>النتيجة والأثر المترتب</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td><strong>انحسار الفرات</strong></td>
+                  <td>انحسار الماء عن جبل من الذهب الخالص.</td>
+                  <td>مقتلة عظيمة يُفرز فيها تسعة وتسعون قتيلاً من كل مائة.</td>
+              </tr>
+              <tr>
+                  <td><strong>الاقتتال عند الكنز</strong></td>
+                  <td>الصراع الحجازي بين أبناء الخلفاء على الملك.</td>
+                  <td>حرمان الجميع من الكنز وشيوع الاضطراب الشديد.</td>
+              </tr>
+              <tr>
+                  <td><strong>الاستقطاب الفكري</strong></td>
+                  <td>ظهور الأدعياء وانقسام الخلق إلى فسطاطين.</td>
+                  <td>انقراض التذبذب وتميز الإيمان المحض من النفاق المحض.</td>
+              </tr>
+              <tr>
+                  <td><strong>التحول البيئي</strong></td>
+                  <td>عودة جغرافية الجزيرة إلى أصلها الخصيب.</td>
+                  <td>انبعاث المياه والغطاء النباتي المروجي.</td>
+              </tr>
+          </tbody>
+      </table>
+    `
+  },
+  // PART 2
+  {
+    id: 4,
+    partNum: 2,
+    partTitle: "ظهور المهدي وبيعة الركن والمقام",
+    chapterNum: 4,
+    chapterTitle: "الفصل الرابع: الرجل الذي لم يكن يريد الملك",
+    visualPlan: {
+      title: "فرار المهدي زاهداً بالإمارة",
+      event: "رجل صالح من آل البيت يفر ليلاً من المدينة إلى مكة هرباً من الفتنة وتجنباً للملك.",
+      characters: "شبح رجل ملثم بعباءة عربية قديمة، يمشي منفرداً في دروب الصحراء ليلاً باتجاه مكة، ظهره للكاميرا.",
+      environment: "صحراء الحجاز الصخرية ليلاً تحت سماء مرصعة بالنجوم وهلال فضي رفيع.",
+      lighting: "ضوء القمر الخافت على الصخور مع نسيم الصحراء وظلال حانية.",
+      mood: "زهد، سكينة، هيبة نبوية، وخشوع خالص."
+    },
+    svgTheme: "mahdi_solitude",
+    contentHtml: `
+      <p>في مخاض هذه الاضطرابات، يمنّ الله تعالى على الأمة بإصلاح رجل من أهل بيت النبوة في ليلة واحدة. وهو محمد بن عبد الله، من ولد فاطمة رضي الله عنها، الموصوف بخَلقه وأخلاقه بأنه أجلى الجبهة أقنى الأنف.</p>
+      <p>يملأ الأرض قسطاً وعدلاً كما ملئت جوراً وظلماً. لا يطلب هذا الرجل السلطة ولا يسعى إليها، بل يفر من المدينة المنورة إلى مكة المكرمة هرباً من الفتنة واستعفاءً من المطالبة بالإمارة.</p>
+    `
+  },
+  {
+    id: 5,
+    partNum: 2,
+    partTitle: "ظهور المهدي وبيعة الركن والمقام",
+    chapterNum: 5,
+    chapterTitle: "الفصل الخامس: البيعة بين الركن والمقام — تفاصيلها ومن يحضرها",
+    visualPlan: {
+      title: "البيعة التاريخية بين الركن والمقام",
+      event: "بيعة المهدي كارهًا عند الكعبة المشرفة في مكة بعد صلاة العشاء من ثلة صالحة بعدة أهل بدر.",
+      characters: "ظلال 313 رجلاً في وقار وهيبة حول الكعبة، المهدي في الوسط مغطى بالهيبة والسكينة دون إظهار ملامح.",
+      environment: "صحن المسجد الحرام العتيق، جدران الكعبة بستارها المهيب، فوانيس معلقة بنور ذهبي دافئ.",
+      lighting: "نور ساطع دافئ من مشاعل الحرم، ظلال طويلة على البلاط القديم في سكون الليل.",
+      mood: "خشوع عظيم، دموع المسؤولية، ولحظة تاريخية فاصلة في مسار الأمة."
+    },
+    svgTheme: "bayah_kaaba",
+    contentHtml: `
+      <p>يتعرف عليه أولياء الله والصلحاء في مكة، فيخرجونه من البيت الحرام وهو كاره مستخفٍ. فيبايعونه بين الركن والمقام عند البيت العتيق.</p>
+      <div class="dialogue-card">
+          <div class="dialogue-title">نداء المهدي عند البيت الحرام:</div>
+          <p class="dialogue-line">«أُذَكِّرُكُمُ اللَّهَ أَيُّهَا النَّاسُ وَمَقَامَكُمْ بَيْنَ يَدَيْ رَبِّكُمْ.. فَإِنِّي أَدْعُوكُمْ إِلَى اللَّهِ وَإِلَى رَسُولِهِ وَالْعَمَلِ بِكِتَابِهِ».</p>
+      </div>
+      <p>ثم يظهر في ثلاثمائة وثلاثة عشر رجلاً بعدة أهل بدر، على غير ميعاد، قزعاً كقزع الخريف، رهباناً بالليل أسداً بالنهار.</p>
+    `
+  },
+  {
+    id: 6,
+    partNum: 2,
+    partTitle: "ظهور المهدي وبيعة الركن والمقام",
+    chapterNum: 6,
+    chapterTitle: "الفصل السادس: الرايات السود وبيعة أهل العراق",
+    visualPlan: {
+      title: "مسير الرايات السود وبداية عصر العدل",
+      event: "تحرك الجيوش المؤمنة والرايات السود من المشرق وخراسان والكوفة للانضمام لراية الحق ونشر العدل.",
+      characters: "فرسان يمتطون الخيول العربية الأصيلة يحملون رايات سوداء خافقة، في مسير منتظم مهيب.",
+      environment: "سهول العراق وبساتين النخيل على ضفاف النهرين وقت الصباح الباكر.",
+      lighting: "أشعة الفجر الذهبية تنعكس على الدروع والسيوف والرايات الخافقة.",
+      mood: "عزة ونصرة وتفاؤل ببزوغ فجر العدل ورفع الظلم."
+    },
+    svgTheme: "black_banners",
+    contentHtml: `
+      <p>وبمجرد انتشار خبر البيعة وتأسيس القيادة الإيمانية في مكة، تبدأ الأحداث تتسارع. فتنزل الرايات السود الكوفة، فتبعث بالبيعة إلى المهدي.</p>
+      <p>ويبعث المهدي جنوده في الآفاق، ويميت الجور وأهله، وتستقيم له البلدان، ويكون مدة ملكه سبع سنين (وقيل ثمانياً أو تسعاً).</p>
+    `
+  },
+  // PART 3
+  {
+    id: 7,
+    partNum: 3,
+    partTitle: "الملاحم الكبرى وفتح القسطنطينية",
+    chapterNum: 7,
+    chapterTitle: "الفصل السابع: الصلح مع الروم ورفع الصليب",
+    visualPlan: {
+      title: "المرج المشترك وغدر الروم بعد النصر",
+      event: "نزول المسلمين والروم في مرج أخضر بعد انتصار مشترك، وقيام رومي برفع الصليب وغدرهم.",
+      characters: "فارسان في مواجهة حاسمة في المرج، أحدهما يرفع راية الصليب والآخر ينتصر للحق.",
+      environment: "مرج واسع من المروج الشمالية في بلاد الشام، خيام معسكرات بعيدة تحت غيوم متلبدة.",
+      lighting: "ضوء شاحب يسبق العاصفة، شمس خافتة وراء سحب رمادية.",
+      mood: "توتر مفاجئ، نقض العهود، وبدء مرحلة الملاحم الكبرى."
+    },
+    svgTheme: "cross_truce",
+    contentHtml: `
+      <p>يعقد المهدي والمسلمون صلحاً آمناً مع الروم، فيقاتلون معاً عدواً مشتركاً فينتصرون. وعند العودة، ينزلون بمرج، فيقوم رجل من الروم فيرفع الصليب ويصيح: "غَلَبَ الصَّلِيبُ!"، فيغضب رجل من المسلمين فيقتله، وعندها يغدر الروم وتشتعل الملحمة الكبرى.</p>
+    `
+  },
+  {
+    id: 8,
+    partNum: 3,
+    partTitle: "الملاحم الكبرى وفتح القسطنطينية",
+    chapterNum: 8,
+    chapterTitle: "الفصل الثامن: ملحمة دابق العظمى — أربعة أيام غيّرت التاريخ",
+    visualPlan: {
+      title: "ملحمة الأعماق ودابق الكبرى",
+      event: "اصطفاف الجيوش العظمى في سهول دابق بالشام، أربعة أيام من أشرس المعارك في تاريخ البشرية.",
+      characters: "جيشان عظيمان على مد البصر، رايات خافقة، فرسان وخيول في غبار المعركة.",
+      environment: "سهول دابق وأعماق الشام الممتدة تحت سماء ملبدة بالغبار.",
+      lighting: "شمس حمراء دامية تخترق غبار المعركة وقت الغروب.",
+      mood: "صراع كوني ملحمي، ثبات، وتضحية أسطورية للمؤمنين."
+    },
+    svgTheme: "dabiq_battle",
+    contentHtml: `
+      <p>تتجمع الأمم بأعماق دابق. ويخرج إليهم جيش المدينة من خيار أهل الأرض يومئذ، وتقع ملحمة عظيمة تشهد أربعة أيام متوالية من القتال الشديد. يُقتل ثلث المسلمين (أعظم الشهداء)، ويفر ثلث، ويسلم الثلث الباقي لا يُفتنون أبداً ويفتح الله على أيديهم.</p>
+    `
+  },
+  {
+    id: 9,
+    partNum: 3,
+    partTitle: "الملاحم الكبرى وفتح القسطنطينية",
+    chapterNum: 9,
+    chapterTitle: "الفصل التاسع: فتح القسطنطينية بالتكبير",
+    visualPlan: {
+      title: "سقوط أسوار القسطنطينية بالتكبير والتهليل",
+      event: "إحاطة سبعين ألفاً بأسوار القسطنطينية وتهليلهم وسقوط الأسوار ونداء الشيطان الكاذب.",
+      characters: "جموع المسلمين في ثياب بيضاء خاشعة يرفعون أيديهم بالتكبير باتجاه البحر والأسوار العالية.",
+      environment: "خليج بحري أزرق محاط بالأسوار الحجرية الضخمة للقسطنطينية، جانب من السور يتصدع ويهوي.",
+      lighting: "شمس ساطعة تنعكس على مياه البحر، أشعة نور تنبعث مع أصوات التكبير.",
+      mood: "نصر روحي إلهي خارق للعادة."
+    },
+    svgTheme: "constantinople_takbeer",
+    contentHtml: `
+      <p>يتجه المسلمون إلى القسطنطينية. ولا يحتاجون إلى قتال بالسلاح، بل يحيطون بها ويهتفون: ( لَا إِلَهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ )، فيسقط جانبها، وبينما هم يقتسمون الغنائم إذ ينادي فيهم الشيطان: "إن المسيح الدجال قد خلفكم في أهليكم!".</p>
+    `
+  },
+  // PART 4
+  {
+    id: 10,
+    partNum: 4,
+    partTitle: "فتنة المسيح الدجال الشاملة",
+    chapterNum: 10,
+    chapterTitle: "الفصل العاشر: قصة تميم الداري والحوار الكامل مع الجساسة والدجال",
+    visualPlan: {
+      title: "جزيرة الجساسة ودير الدجال المقيد",
+      event: "وصول سفينة تميم الداري لجزيرة غامضة عند المغيب، لقاء الجساسة، والدخول للدير القديم المحتجز فيه الدجال بالسلاسل.",
+      characters: "بحارة يقفون مذهولين في مدخل دير حجري قديم، وظل كائن مكبل بسلاسل حديدية ضخمة.",
+      environment: "جزيرة صخرية وسط أمواج المحيط، دير حجري قديم تعلوه شقوق وقناديل باهتة.",
+      lighting: "شفق أحمر قاتم لغروب الشمس، وظلال حالكة داخل الدير مع بريق سلاسل الحديد.",
+      mood: "غموض موحش، ترقب، وخوف من المجهول."
+    },
+    svgTheme: "tamim_island",
+    contentHtml: `
+      <p>ركب تميم الداري رضي الله عنه مع ثلاثين رجلاً في سفينة بحرية، فلعب بهم الموج شهراً حتى أرفئوا إلى جزيرة عند غروب الشمس. فلقيتهم دابة كثيفة الشعر تُدعى «الجساسة»، فدلتهم على رجل في الدير أعظم إنسان خَلقاً وأشده وثاقاً مغلولة يداه إلى عنقه بالحديد، فسألهم عن نخل بيسان وبحيرة طبرية ونبي الأميين، ثم أخبرهم أنه المسيح الدجال وأن خروجه قد اقترب.</p>
+    `
+  },
+  {
+    id: 11,
+    partNum: 4,
+    partTitle: "فتنة المسيح الدجال الشاملة",
+    chapterNum: 11,
+    chapterTitle: "الفصل الحادي عشر: خروج الدجال وصفاته وبدائعه وفتنته",
+    visualPlan: {
+      title: "خروج الدجال وسرعته كالريح وجنته وناره",
+      event: "خروج الدجال في سبعين ألفاً، وسرعته الفائقة في الأرض، وإظهاره الخوارق الشيطانية.",
+      characters: "موكب ضخم من الخيالة بأردية الطيالسة، وفي الصدارة ظل قائد مهيب تحيط به سحابة من الغبار.",
+      environment: "أراضي قاحلة شاسعة، جانب منها تتفجر فيه أنهار وأشجار وجانب يشتعل نيرانًا.",
+      lighting: "تباين خادع بين سماء تمطر بغزارة في بقعة وجدب تام في بقعة مجاورة.",
+      mood: "أعظم فتنة على وجه الأرض منذ خلق آدم إلى قيام الساعة."
+    },
+    svgTheme: "dajjal_fitnah",
+    contentHtml: `
+      <p>يخرج الدجال من أصبهان في سبعين ألفاً من يهودها. وهو رجل اعور العين اليمنى مكتوب بين عينيه: <span class="badge badge-crimson">ك ف ر</span>. يمكث أربعين يوماً؛ يوم كسنة، ويوم كشهر، ويوم كأسبوع، وسائر أيامه كأيام الناس. معه جنة ونار، ويأمر السماء فتمطر والأرض فتنبت، يطوف الأرض كلها إلا مكة والمدينة.</p>
+    `
+  },
+  {
+    id: 12,
+    partNum: 4,
+    partTitle: "فتنة المسيح الدجال الشاملة",
+    chapterNum: 12,
+    chapterTitle: "الفصل الثاني عشر: الشاب المؤمن وحوار الشاب المؤمن ومقتله بالمنشار",
+    visualPlan: {
+      title: "ثبات الشاب المؤمن في سبخة المدينة",
+      event: "خروج الشاب الصالح لمواجهة الدجال خارج أسوار المدينة المنورة، ثباته وقطعه بالمنشار ثم إحيائه دون أن يفتتن.",
+      characters: "شاب مؤمن شجاع يقف شامخاً بمفرده في مواجهة معسكر الدجال وجنوده المسلحين.",
+      environment: "سبخة الحجارة السوداء خارج أسوار المدينة المنورة.",
+      lighting: "نور ساطع إيماني ينبعث من جانب المدينة المحمية بالملائكة.",
+      mood: "قمة اليقين والشجاعة وكسر شوكة الباطل."
+    },
+    svgTheme: "believer_youth",
+    contentHtml: `
+      <p>ينزل الدجال بالسبخة خارج المدينة، فيخرج إليه شاب مؤمن وينادي: "هذا الدجال الذي ذكر رسول الله ﷺ!". فيأمر به الدجال فيُؤشر بالمنشار حتى يُفرق نصفين، ثم يقول له الدجال: "قُمْ!"، فيستوي حياً يضحك، فيقول الشاب: "والله ما زددت فيك اليوم إلا بصيرة!". فيحاول قتله ثانية فلا يستطيع إليه سبيلاً.</p>
+    `
+  },
+  // PART 5
+  {
+    id: 13,
+    partNum: 5,
+    partTitle: "نزول عيسى ابن مريم وقتل الدجال",
+    chapterNum: 13,
+    chapterTitle: "الفصل الثالث عشر: نزول عيسى عند المنارة البيضاء",
+    visualPlan: {
+      title: "نزول عيسى ابن مريم عند الفجر بدمشق",
+      event: "نزول نبي الله عيسى عليه السلام عند المنارة البيضاء شرقي دمشق وقت صلاة الفجر واضعاً يديه على أجنحة ملكين.",
+      characters: "شخصيات سماوية بعيدة ذات جلال ووقار في السماء دون تجسيد ملامح الوجه.",
+      environment: "المنارة البيضاء الشرقية تعلو مآذن دمشق القديمة، سماء الفجر الصافية الزرقاء.",
+      lighting: "أشعة الفجر الربانية البهية تخترق السحب وتغمر المنارة بنور وضاح.",
+      mood: "سكينة علوية عظيمة، طمأنينة قلوب المؤمنين."
+    },
+    svgTheme: "white_minaret_descent",
+    contentHtml: `
+      <p>ينزل نبي الله عيسى ابن مريم عليه السلام عند المنارة البيضاء شرقي دمشق بين مهرودتين واضعاً كفيه على أجنحة ملكين. فيرجع الإمام المهدي ليقدم عيسى ليصلي بالناس، فيقول عيسى: «تَقَدَّمْ فَصَلِّ، فَإِنَّهَا لَكَ أُقِيمَتْ» — تكرمةً لهذه الأمة.</p>
+    `
+  },
+  {
+    id: 14,
+    partNum: 5,
+    partTitle: "نزول عيسى ابن مريم وقتل الدجال",
+    chapterNum: 14,
+    chapterTitle: "الفصل الرابع عشر: مقتل الدجال عند باب لُدّ",
+    visualPlan: {
+      title: "مصرع الدجال بحربة عيسى عند باب لد",
+      event: "ذوبان الدجال عند رؤية عيسى عليه السلام ومطاردته حتى باب لد في فلسطين ومقتله بالحربة.",
+      characters: "ظلان متقابلان من بعيد، حربة مرفوعة ينعكس عليها شعاع ذهبي، وانهيار الطاغوت الدجال.",
+      environment: "بوابة حجرية أثرية قديمة (باب لد) في أرض فلسطين، أشجار زيتون متباعدة.",
+      lighting: "شمس الصباح الساطعة تكشف الحقيقة وتبدد ظلمات الزيف.",
+      mood: "انتصار الحق الأبدي، نهاية الطغيان، وزهوق الباطل."
+    },
+    svgTheme: "babb_ludd",
+    contentHtml: `
+      <p>يخرج عيسى عليه السلام في طلب الدجال، فإذا رآه الدجال ذاب كما يذوب الملح في الماء. فيتبعه عيسى حتى يدركه عند <span class="badge badge-gold">باب لُدّ</span> فيقتله بحربته. وينهزم أتباعه وينطق الحجر والشجر إلا الغرقد.</p>
+    `
+  },
+  // PART 6
+  {
+    id: 15,
+    partNum: 6,
+    partTitle: "خروج يأجوج ومأجوج وعصر البركة",
+    chapterNum: 15,
+    chapterTitle: "الفصل الخامس عشر: خروج يأجوج ومأجوج والحصار في الطور",
+    visualPlan: {
+      title: "طوفان يأجوج ومأجوج وحصار جبل الطور",
+      event: "خروج جموع يأجوج ومأجوج من كل حدب ينسلون، شرب بحيرة طبرية، وحصار عيسى والمؤمنين في جبل الطور.",
+      characters: "حشود بشرية لا تحصى كالجراد المنتشر في الوديان، والمؤمنون معتصمون بقمة الجبل.",
+      environment: "بحيرة طبرية وقد جفت قيعانها المشققة، وجبل الطور الصخري العظيم.",
+      lighting: "سماء معتمة رمادية مغبرة وسهام تنطلق نحو الأفق.",
+      mood: "ابتلاء عظيم، لجوء خالص لله، واعتصام بجبل الإيمان."
+    },
+    svgTheme: "yajooj_swarms",
+    contentHtml: `
+      <p>يوحي الله إلى عيسى: ﴿ إِنِّي قَدْ أَخْرَجْتُ عِبَادًا لِي لاَ يَدَانِ لأَحَدٍ بِقِتَالِهِمْ، فَحَرِّزْ عِبَادِي إِلَى الطُّورِ ﴾. فيخرج يأجوج ومأجوج من كل حدب ينسلون ويشربون بحيرة طبرية، ويُحصر عيسى وأصحابه في جبل الطور.</p>
+    `
+  },
+  {
+    id: 16,
+    partNum: 6,
+    partTitle: "خروج يأجوج ومأجوج وعصر البركة",
+    chapterNum: 16,
+    chapterTitle: "الفصل السادس عشر: هلاكهم وعصر البركة الشاملة",
+    visualPlan: {
+      title: "تطهير الأرض وعصر البركة والسلام العميم",
+      event: "إرسال النغف على يأجوج ومأجوج، ثم الطير والمطر المطهر للأرض، وانفجار ينابيع البركة والثمار العظيمة.",
+      characters: "فلاحون وأطفال يلعبون بأمان في حقول خضراء يانعة، حيوانات أليفة ومفترسة متجاورة.",
+      environment: "أرض مروية غناء كالمرآة الصافية، أشجار رمان عملاقة تستظل بقشورها الناس.",
+      lighting: "أشعة شمس ذهبية دافئة تشع بهجة ونقاء وسلاماً.",
+      mood: "سلام مطلق، فيض من النعم، وعدالة ربانية شاملة."
+    },
+    svgTheme: "barakah_era",
+    contentHtml: `
+      <p>يدعو عيسى ربه فيرسل الله النغف في أعناق يأجوج ومأجوج فيصبحون فرسى كموت نفس واحدة. ثم يرسل الله طيراً ومطراً يغسل الأرض كأنه الزلفة. وتبدأ بركة الأرض حتى يستظل الفئام من الناس بقحف الرمانة وتلعب الصبيان مع الحيات. ويمكث عيسى أربعين سنة ثم يتوفى ويصلي عليه المسلمون.</p>
+    `
+  },
+  // PART 7
+  {
+    id: 17,
+    partNum: 7,
+    partTitle: "العلامات الكونية الحتمية وقيام الساعة",
+    chapterNum: 17,
+    chapterTitle: "الفصل السابع عشر: طلوع الشمس من مغربها والدابة والدخان",
+    visualPlan: {
+      title: "طلوع الشمس من مغربها والدابة وخروج الدخان",
+      event: "انقلاب النظام الكوني بطلوع قرص الشمس من جهة الغرب، وظهور دابة الأرض تميز المؤمن من الكافر، والدخان يعم السماء.",
+      characters: "ظلال بشر في ذهول وفزع ينظرون نحو الأفق الغربي، ودابة عظيمة تنبعث من بطحاء مكة.",
+      environment: "صحراء واسعة وجبال مكة القديمة تحت سماء يملؤها دخان كثيف.",
+      lighting: "إضاءة كونية غير مألوفة، قرص شمس مهيب من المغرب.",
+      mood: "إغلاق باب التوبة، ذهول كوني، وانقطاع حبل الرجاء الدنيوي."
+    },
+    svgTheme: "sun_west",
+    contentHtml: `
+      <p><strong>1. طلوع الشمس من مغربها:</strong> يُغلق باب التوبة نهائياً. <strong>2. خروج دابة الأرض:</strong> تسم أنف الكافر وتجلو وجه المؤمن. <strong>3. الدخان العظيم:</strong> يغشى الناس أربعين يوماً.</p>
+    `
+  },
+  {
+    id: 18,
+    partNum: 7,
+    partTitle: "العلامات الكونية الحتمية وقيام الساعة",
+    chapterNum: 18,
+    chapterTitle: "الفصل الثامن عشر: الخسوفات الثلاثة ورفع القرآن وهدم الكعبة",
+    visualPlan: {
+      title: "الخسوفات العظمى ورفع كلام الله وهدم الكعبة",
+      event: "وقوع خسوفات بالمشرق والمغرب وجزيرة العرب، رفع صفحات القرآن لتصبح بيضاء، وهدم الكعبة حجراً حجراً.",
+      characters: "ظلال بعيدة على أنقاض مبنى حجري عتيق، ومصاحف مفتوحة تشع صفحاتها بياضاً.",
+      environment: "أرض متصدعة بفعل الخسوف، وأطلال الكعبة المشرفة في مشهد حزين مهيب.",
+      lighting: "سماء ليلية قاتمة خالية من النجوم إلا من نور القرآن الصاعد.",
+      mood: "فراق الرحمة، جفاف البركة عن الأرض، واقتراب الأجل."
+    },
+    svgTheme: "quran_lift",
+    contentHtml: `
+      <p>تقع خسوفات بالمشرق والمغرب وجزيرة العرب، ويُسرى على القرآن في ليلة واحدة فلا يبقى منه آية، ويهدم ذو السويقتين الكعبة حجراً حجراً.</p>
+    `
+  },
+  {
+    id: 19,
+    partNum: 7,
+    partTitle: "العلامات الكونية الحتمية وقيام الساعة",
+    chapterNum: 19,
+    chapterTitle: "الفصل التاسع عشر: الريح الطيبة ونار الحشر",
+    visualPlan: {
+      title: "الريح الطيبة اللينة ونار الحشر تسوق الناس",
+      event: "هبوب نسيم طيب يقبض أرواح المؤمنين برفق، وانبثاق نار عظيمة من قعر عدن تسوق شرار الخلق نحو الشام.",
+      characters: "ألسنة لهب بركانية جبارة تسوق قوافل متناثرة من البشر المذعورين.",
+      environment: "فوهة بركانية عظيمة في أرض اليمن تقذف حمماً وألسنة لهب تضيء الأفق.",
+      lighting: "وهج ناري أحمر وبرتقالي عملاق يبتلع الظلام.",
+      mood: "رعب مطلق لشرار الخلق، ونهاية المؤمنين بسلام ورأفة."
+    },
+    svgTheme: "aden_fire",
+    contentHtml: `
+      <p>يرسل الله ريحاً طيبة تقبض روح كل من في قلبه مثقال ذرة من إيمان. ثم تخرج نار عظيمة من عدن تطرد شرار الخلق وتسوقهم إلى المحشر بالشام، وعليهم تقوم الساعة.</p>
+    `
+  },
+  // PART 8
+  {
+    id: 20,
+    partNum: 8,
+    partTitle: "البعث والنشور وأهوال الموقف",
+    chapterNum: 20,
+    chapterTitle: "الفصل العشرون: النفخ في الصور بين الصعق والبعث",
+    visualPlan: {
+      title: "نفخة الصعق وفناء الخلائق ثم نفخة البعث",
+      event: "إسرافيل ينفخ في الصور نفخة الصعق فتموت الخلائق كلها، ويبقى الواحد القهار، ثم نفخة البعث فتنبت الأجساد.",
+      characters: "صورة رمزية للكون والسماوات المطوية، والقبور تتشقق عن أجساد تنهض لنداء الخالق.",
+      environment: "أرض منشقة سحيقة، سماء مشققة بالغمام، أجرام سماوية متناثرة.",
+      lighting: "انفجار ضوئي كوني كاسح يمزق عتمة الموت، يتبعه سكون مهيب ثم نور البعث.",
+      mood: "جبروت إلهي أعظم، رهبة الوجود، وزوال كل حي إلا وجه الله."
+    },
+    svgTheme: "soor_trumpet",
+    contentHtml: `
+      <p>ينفخ إسرافيل عليه السلام نفخة الصعق فتموت الخلائق كلها ويموت ملك الموت وحملة العرش، وينادي الجبار: ﴿ لِّمَنِ الْمُلْكُ الْيَوْمَ ﴾ فيجيب نفسه: ﴿ لِلَّهِ الْوَاحِدِ الْقَهَّارِ ﴾. ثم يرسل مطراً فتنبت الأجساد وينفخ نفخة البعث فيخرج الناس حفاة عراة غرلاً.</p>
+    `
+  },
+  {
+    id: 21,
+    partNum: 8,
+    partTitle: "البعث والنشور وأهوال الموقف",
+    chapterNum: 21,
+    chapterTitle: "الفصل الحادي والعشرون: أرض المحشر والشمس والعرق",
+    visualPlan: {
+      title: "أرض المحشر البيضاء العفراء ودنو الشمس وجر جهنم",
+      event: "اجتماع الخلائق في أرض بيضاء مستوية كقرصة النقي، دنو الشمس مقدار ميل، غرق الناس في العرق، وجلب جهنم.",
+      characters: "مليارات البشر قيام خاشعة أبصارهم في سهل ممتد بلا معالم، وملائكة عظام يمسكون بأزمة جهنم.",
+      environment: "أرض بيضاء ممتدة لا عوج فيها، شمس متوهجة ملتهبة قريبة جداً من الرؤوس.",
+      lighting: "شمس ساطعة حارقة ملتهبة تلقي هجيرها على أرض المحشر.",
+      mood: "خوف ووجل، كرب عظيم، وطول انتظار خمسين ألف سنة."
+    },
+    svgTheme: "mahshar_plains",
+    contentHtml: `
+      <p>تجمع الخلائق في أرض بيضاء عفراء كقرصة النقي. وتدنو الشمس من الرؤوس مقدار ميل فيغرق الناس في العرق بحسب أعمالهم، وتُجلب جهنم بسبعين ألف زمام مع كل زمام سبعون ألف ملك.</p>
+    `
+  },
+  // PART 9
+  {
+    id: 22,
+    partNum: 9,
+    partTitle: "الشفاعة العظمى والحساب",
+    chapterNum: 22,
+    chapterTitle: "الفصل الثاني والعشرون: البحث عن شفيع - من آدم إلى محمد ﷺ",
+    visualPlan: {
+      title: "مقام المحمود وسجود الشفاعة العظمى تحت العرش",
+      event: "طواف الناس على أولي العزم من الرسل طلباً للشفاعة حتى ينتهوا إلى سيد الخلق محمد ﷺ فيسجد تحت العرش.",
+      characters: "جموع الأنبياء الكرام في مواقفهم المهيبة، ونور عرش الرحمن يفيض على موضع سجود النبي ﷺ.",
+      environment: "أعتاب العرش الإلهي المجيد، أنوار قدسية وبهاء لا يوصف.",
+      lighting: "نور ساطع إلهي يخطف الأبصار، تدرجات الذهب واللؤلؤ والزمرد.",
+      mood: "رحمة، فضل، تكريم نبوي، وارتياح الخلائق."
+    },
+    svgTheme: "shafaah_arsh",
+    contentHtml: `
+      <p>يتداعى الناس للأنبياء طلباً للشفاعة ليقضي الله بينهم وكلٌ يقول: "نَفْسِي نَفْسِي"، حتى ينتهوا إلى النبي ﷺ فيقول: «أَنَا لَهَا»، فيسجد تحت العرش فيقال له: «ارْفَعْ رَأْسَكَ وَاسْتَشْفِعْ تُشَفَّعْ».</p>
+    `
+  },
+  {
+    id: 23,
+    partNum: 9,
+    partTitle: "الشفاعة العظمى والحساب",
+    chapterNum: 23,
+    chapterTitle: "الفصل الثالث والعشرون: عرض الأعمال والصحف والميزان",
+    visualPlan: {
+      title: "تطاير الصحف والميزان ذو الكفتين واللسان",
+      event: "تطاير صحائف الأعمال، أخذ الكتب بالأيمان والشمائل، ونصب الميزان القسط لوزن الخردل.",
+      characters: "خلق يقبضون على صحائفهم بيمين مشرقة أو بشمال بائسة، وميزان ضخم يزن الذرات.",
+      environment: "ساحة المحكمة الإلهية العادلة، صحائف تتطاير بأجنحة النور، وميزان شامخ لا يميل.",
+      lighting: "أشعة عدل إلهي كاشفة تظهر كل سريرة.",
+      mood: "عدل مطلق، دقة متناهية، ومصير أبدي."
+    },
+    svgTheme: "mizan_books",
+    contentHtml: `
+      <p>تتطاير الصحف فآخذٌ كتابه بيمينه وآخذٌ كتابه بشماله، ويوضع الميزان الحقيقي ذو الكفتين لتوزن به الأعمال بدقة متناهية.</p>
+    `
+  },
+  {
+    id: 24,
+    partNum: 9,
+    partTitle: "الشفاعة العظمى والحساب",
+    chapterNum: 24,
+    chapterTitle: "الفصل الرابع والعشرون: قصة صاحب البطاقة والمفلس",
+    visualPlan: {
+      title: "رجحان بطاقة التوحيد ومصير المفلس",
+      event: "وضع تسعة وتسعين سجلاً مداً للبصر في كفة، وبطاقة لا إله إلا الله في كفة فترجح البطاقة وتطيش السجلات.",
+      characters: "رجل يقف مذهولاً أمام كفتي الميزان، وبطاقة صغيرة مشعة بنور التوحيد تغلب أطنان السجلات.",
+      environment: "فضاء الحساب، كفة الميزان ترتفع وتطيش فيها السجلات الضخمة.",
+      lighting: "إشعاع ذهبي ساطع ينبثق من بطاقة التوحيد يطغى على كل سواد الخطايا.",
+      mood: "سعة رحمة الله، عظمة كلمة التوحيد، وعبرة المفلس المحروم."
+    },
+    svgTheme: "card_tawheed",
+    contentHtml: `
+      <p>توضع 99 سجلاً من السيئات في كفة وتوضع بطاقة «لا إله إلا الله» في كفة فتطيش السجلات وثقلت البطاقة. وأما المفلس فهو من يأتي بحسنات كالجبال وأخذ حقوق العباد فتؤخذ حسناته لهم حتى يُطرح في النار.</p>
+    `
+  },
+  // PART 10
+  {
+    id: 25,
+    partNum: 10,
+    partTitle: "الحوض والصراط والقنطرة",
+    chapterNum: 25,
+    chapterTitle: "الفصل الخامس والعشرون: حوض النبي ﷺ المورود",
+    visualPlan: {
+      title: "الحوض المورود والأكواب كنجوم السماء",
+      event: "ورود المؤمنين على حوض النبي ﷺ، ماؤه أبيض من اللبن وأحلى من العسل وكيزانه كنجوم السماء.",
+      characters: "جموع المؤمنين يردون الحوض برؤوس بيضاء من أثر الوضوء، والنبي ﷺ يذود المحدثين.",
+      environment: "حوض شاسع مد البصر يفيض بمياه بلورية فائقة البياض والصفاء.",
+      lighting: "بريق ماسي لؤلؤي يخترق ظلمات الموقف.",
+      mood: "ري بعد عطش خمسين ألف سنة، روعة اللقاء، وشرف النبي."
+    },
+    svgTheme: "nawabi_pond",
+    contentHtml: `
+      <p>للنبي ﷺ حوض طوله شهر وعرضه شهر، ماؤه أشد بيضاً من اللبن وأحلى من العسل، أكوابه كنجوم السماء، من شرب منه لا يظمأ أبداً.</p>
+    `
+  },
+  {
+    id: 26,
+    partNum: 10,
+    partTitle: "الحوض والصراط والقنطرة",
+    chapterNum: 26,
+    chapterTitle: "الفصل السادس والعشرون: الظلمة والنور وتمايز الصفوف",
+    visualPlan: {
+      title: "قسمة الأنوار وضرب السور العظيم بين الصفين",
+      event: "إظلام أرض الموقف، إعطاء المؤمنين أنواراً تشع بين أيديهم وبأيمانهم، وانطفاء نور المنافقين وضرب السور الفاصل.",
+      characters: "صفوف المؤمنين تتقدم كأنوار متدفقة، والمنافقون يتخبطون في ظلمات حالكة خلف سور عظيم.",
+      environment: "ممر حالك السواد تعبره قوافل مضيئة، وسور حجري عملاق يرتفع للسماء.",
+      lighting: "أشعة زمردية وذهبية تشع من أقدام وأيدي المؤمنين.",
+      mood: "تمايز نهائي، حسرة المنافقين، وأمان المتقين."
+    },
+    svgTheme: "noor_munafiq",
+    contentHtml: `
+      <p>تُظلم الأرض ويُعطى المؤمنون أنواراً على قدر أعمالهم، وينطفئ نور المنافقين فَيُضْرَبُ بَيْنَهُمْ بِسُورٍ لَهُ بَابٌ بَاطِنُهُ فِيهِ الرَّحْمَةُ وَظَاهِرُهُ مِنْ قِبَلِهِ الْعَذَابُ.</p>
+    `
+  },
+  {
+    id: 27,
+    partNum: 10,
+    partTitle: "الحوض والصراط والقنطرة",
+    chapterNum: 27,
+    chapterTitle: "الفصل السابع والعشرون: عبور الصراط والقنطرة",
+    visualPlan: {
+      title: "جسر الصراط المضروب فوق جهنم وتهذيب القنطرة",
+      event: "نصب الصراط أدق من الشعر وأحد من السيف على متن جهنم، خطاطيف تخطف الناس، والوقوف بالقنطرة.",
+      characters: "ظلال أناس يمرون كالبرق وكالريح وآخرون يزحفون، ودعاء الرسل: اللهم سلم سلم.",
+      environment: "جسر نوري دقيق يمتد فوق هوة سحيقة تلتهب فيها نيران جهنم، ينتهي بربوة خضراء هي القنطرة.",
+      lighting: "وميض البرق الخاطف ووهج النار البركانية في الأسفل.",
+      mood: "أقصى درجات الوجل والرهبة، وتضرع الأنبياء."
+    },
+    svgTheme: "sirat_bridge",
+    contentHtml: `
+      <p>يُنصب الصراط على متن جهنم (أدق من الشعر وأحد من السيف) وعليه كلاليب تخطف الناس بأعمالهم، فمنهم من يمر كالبرق ومنهم كالريح، ثم يُوقف النادون على القنطرة للتقاص والمظالم قبل ورود الجنة.</p>
+    `
+  },
+  // PART 11
+  {
+    id: 28,
+    partNum: 11,
+    partTitle: "دخول الجنة والنار",
+    chapterNum: 28,
+    chapterTitle: "الفصل الثامن والعشرون: دخول الجنة وحوار آخر رجل يدخلها",
+    visualPlan: {
+      title: "قرع باب الجنة وقصة آخر من يدخلها",
+      event: "استفتاح النبي ﷺ باب الجنة وفتح الخازن رضوان له، وحوار آخر رجل يخرج من النار ويدخل الجنة.",
+      characters: "بوابات الجنة العظمى المفتوحة، ورجل يزحف حتى يقترب من شجرة وارفة الظلال بباب الفردوس.",
+      environment: "أبواب ذهبية وياقوتية ضخمة تطل على بساتين وأنهار وقصور لا عين رأت.",
+      lighting: "نور زمردي وذهبي دافئ وهاج يملأ الأفق بالبهجة.",
+      mood: "فرحة لا توصف، كرم رباني يعجز عنه الخيال."
+    },
+    svgTheme: "jannah_gate",
+    contentHtml: `
+      <p>يقرع النبي ﷺ باب الجنة فيكون أول من يدخلها. وأما آخر من يدخل الجنة فرجل يخرج حبواً من النار فيعطيه الله مثل الدنيا وعشرة أمثالها فضل كرم ورحمة.</p>
+    `
+  },
+  {
+    id: 29,
+    partNum: 11,
+    partTitle: "دخول الجنة والنار",
+    chapterNum: 29,
+    chapterTitle: "الفصل التاسع والعشرون: خطبة إبليس الأخيرة في جهنم",
+    visualPlan: {
+      title: "منبر إبليس الأخير في قعر جهنم وتبرؤه من أتباعه",
+      event: "وقوف إبليس خطيباً على منبر من نار في قعر دركات الجحيم ليعلن تبرؤه من كل من ضل بسببه.",
+      characters: "ظل كائن مظلم على منبر مسجر بالنيران، وحوله جموع من أهل النار في حسرة وعويل.",
+      environment: "هوة سحيقة من نيران الجحيم والسرادق العظيم، ألسنة دخان ولهب أسود.",
+      lighting: "إضاءة نارية كبريتية حمراء وسوداء، وجوه يائسة.",
+      mood: "حسرة أبدية، خيبة أمل مطلقة، وانقطاع الأسباب."
+    },
+    svgTheme: "iblis_sermon",
+    contentHtml: `
+      <p>يقف إبليس خطيباً في جهنم قائلاً: ﴿ إِنَّ اللَّهَ وَعَدَكُمْ وَعْدَ الْحَقِّ وَوَعَدتُّكُمْ فَأَخْلَفْتُكُمْ وَمَا كَانَ لِيَ عَلَيْكُم مِّن سُلْطَانٍ إِلَّا أَن دَعَوْتُكُمْ فَاسْتَجَبْتُمْ لِي فَلَا تَلُومُونِي وَلُومُوا أَنفُسَكُم ﴾.</p>
+    `
+  },
+  // PART 12
+  {
+    id: 30,
+    partNum: 12,
+    partTitle: "ذبح الموت والخلود السرمدي",
+    chapterNum: 30,
+    chapterTitle: "الفصل الثلاثون: ذبح الموت والنهاية الخالدة",
+    visualPlan: {
+      title: "ذبح الموت على الأعراف وإعلان الخلود السرمدي",
+      event: "الإتيان بالموت في صورة كبش أملح وذبحه بين الجنة والنار على الأعراف والنداء بالخلود الأبدي.",
+      characters: "منادٍ سماوي يرفع الصوت بين الفريقين، كبش أملح يضجع على سور الأعراف المرتفع.",
+      environment: "أعراف وسور مرتفع يشرف من جانب على بساتين الجنة الخضراء ومن جانب على جهنم.",
+      lighting: "إشراقة أبدية تعم الجنة وتطمئن أهلها.",
+      mood: "يقين الخلود، نهاية إمكانية الفناء، وفرحة لا تنتهي."
+    },
+    svgTheme: "slaughter_death",
+    contentHtml: `
+      <p>يؤتى بالموت على صورة كبش أملح فيُذبح على الأعراف وينادي المنادي: «يَا أَهْلَ الْجَنَّةِ خُلُودٌ فَلاَ مَوْتَ، وَيَا أَهْلَ النَّارِ خُلُودٌ فَلاَ مَوْتَ!»، فتزول إمكانية الفناء إلى الأبد.</p>
+    `
+  },
+  {
+    id: 31,
+    partNum: 12,
+    partTitle: "ذبح الموت والخلود السرمدي",
+    chapterNum: 31,
+    chapterTitle: "الفصل الحادي والثلاثون: حياة الجنة الأبدية",
+    visualPlan: {
+      title: "جنات النعيم الخالدة وقصور اللؤلؤ وسوق الجنة",
+      event: "أنهار الجنة الأربعة، قصور الذهب والفضة والخيام المجوفة، وسوق الجنة الذي يأتونها كل جمعة فتزيدهم حسناً وجمالاً.",
+      characters: "أهل الجنة في حلل من سندس وإستبرق على الأرائك متكئين في بهجة وسرور دائم.",
+      environment: "أنهار من ماء غير آسن، ولبن، وخمر، وعسل مصفى، وقصور لؤلؤية معلقة بين حدائق ذات بهجة لا تزول.",
+      lighting: "نور إلهي ساطع ناصع لا شمس فيه ولا زمهرير، بهاء روحي يفيض جمالاً وراحة.",
+      mood: "نعيم مقيم، راحة بال، وسعادة أبدية لا تنقطع."
+    },
+    svgTheme: "jannah_life",
+    contentHtml: `
+      <p>في الجنة ما لا عين رأت ولا أذن سمعت ولا خطر على قلب بشر. أنهار من ماء غير آسن وأنهار من لبن لم يتغير طعمه وأنهار من خمر لذة للشاربين وأنهار من عسل مصفى.</p>
+      <p>لبن اللبنة ذهب ولبنة فضة، وملاطها المسك الأذفر، وحصباؤها اللؤلؤ والياقوت، وتربتها الزعفران. ولا مرض ولا هرم ولا موت ولا حزن، بل شباب دائم ونعيم سرمدي لا ينفد ولا يبيد.</p>
+    `
+  },
+  {
+    id: 32,
+    partNum: 12,
+    partTitle: "ذبح الموت والخلود السرمدي",
+    chapterNum: 32,
+    chapterTitle: "الفصل الثاني والثلاثون: النعيم الأعظم — رؤية وجه الله الكريم وخاتمة الكتاب",
+    visualPlan: {
+      title: "تجلي الرب الكريم ورؤية وجهه الجليل",
+      event: "كشف الحجاب لأهل الجنة ورؤيتهم لوجه الله الكريم وهو أعظم نعيم أهل الجنة على الإطلاق.",
+      characters: "أهل الجنة ينظرون خاشعين في فرحة ونور وغبطة لا تشبهها أي متعة في الكون.",
+      environment: "روضات الجنة وعرصات الفردوس الأعلى تحت عرش الرحمن.",
+      lighting: "نور التجلي الإلهي الذي يغمر الأبصار والقلوب بالسكينة والجمال.",
+      mood: "النعيم الأعظم، الفوز المبين، وتمام النعمة والخاتمة المباركة."
+    },
+    svgTheme: "divine_vision",
+    contentHtml: `
+      <p>بينما أهل الجنة في نعيمهم المقيم إذ ينادي مناك الرب تبارك وتعالى:</p>
+      <div class="hadith-box">
+          قال رسول الله ﷺ: «إِذَا دَخَلَ أَهْلُ الْجَنَّةِ الْجَنَّةَ، قَالَ: يَقُولُ اللَّهُ تَبَارَكَ وَتَعَالَى: تُرِيدُونَ شَيْئًا أَزِيدُكُمْ؟ فَيَقُولُونَ: أَلَمْ تُبَيِّضْ وُجُوهَنَا؟ أَلَمْ تُدْخِلْنَا الْجَنَّةَ، وَتُنَجِّنَا مِنَ النَّارِ؟ قَالَ: فَيَكْشِفُ الْحِجَابَ، فَمَا أُعْطُوا شَيْئًا أَحَبَّ إِلَيْهِمْ مِنَ النَّظَرِ إِلَى رَبِّهِمْ عَزَّ وَجَلَّ».
+      </div>
+      <p>وقرأ رسول الله ﷺ قول الله تعالى: ﴿ لِّلَّذِينَ أَحْسَنُوا الْحُسْنَىٰ وَزِيَادَةٌ ﴾.</p>
+      <p>وهكذا تنتهي رحلة الوجود الدنيوي وتستقر الخلائق في دار الخلود، فنسأل الله تعالى بأسمائه الحسنى وصفاته العلا أن يجعلنا من أهل الفردوس الأعلى وأن يرزقنا الثبات وحسن الخاتمة والنظر إلى وجهه الكريم.</p>
+    `
+  }
+];
+
+/* ==========================================================================
+   2. APPLICATION STATE MANAGEMENT & CONTROLLERS
+   ========================================================================== */
+let currentSceneIndex = 0;
+let currentMode = 'scene'; // 'scene' or 'book'
+let fontBaseSize = 16;
+let isDarkTheme = true;
+let slideshowTimer = null;
+let touchStartX = 0;
+let touchEndX = 0;
+
+// Initialize App
+document.addEventListener('DOMContentLoaded', () => {
+    loadSavedState();
+    renderScenePickerGrid();
+    renderCurrentScene();
+    renderFullBookView();
+    renderTocList();
+});
+
+// Load state from LocalStorage if available
+function loadSavedState() {
+    try {
+        const savedIndex = localStorage.getItem('end_times_scene_idx');
+        if (savedIndex !== null) {
+            currentSceneIndex = parseInt(savedIndex, 10) || 0;
+        }
+        const savedTheme = localStorage.getItem('end_times_theme');
+        if (savedTheme === 'light') {
+            isDarkTheme = false;
+            document.body.classList.add('light-theme');
+        }
+    } catch (e) {
+        console.log('LocalStorage not supported or blocked in file:// mode');
+    }
+}
+
+function saveState() {
+    try {
+        localStorage.setItem('end_times_scene_idx', currentSceneIndex);
+        localStorage.setItem('end_times_theme', isDarkTheme ? 'dark' : 'light');
+    } catch (e) {}
+}
+
+/* ==========================================================================
+   3. SCENE VIEWER RENDERER
+   ========================================================================== */
+function renderCurrentScene() {
+    const scene = scenesData[currentSceneIndex];
+    if (!scene) return;
+
+    // Badges & Meta
+    document.getElementById('scenePartBadge').textContent = `الجزء ${scene.partNum}: ${scene.partTitle}`;
+    document.getElementById('sceneCounterText').textContent = `المشهد ${scene.id} من ${scenesData.length}`;
+    document.getElementById('sceneTitleText').textContent = scene.visualPlan.title;
+    document.getElementById('sceneEventText').textContent = scene.visualPlan.event;
+
+    // Visual Details Plan
+    document.getElementById('planChars').textContent = scene.visualPlan.characters || '-';
+    document.getElementById('planEnv').textContent = scene.visualPlan.environment || '-';
+    document.getElementById('planLighting').textContent = scene.visualPlan.lighting || '-';
+    document.getElementById('planMood').textContent = scene.visualPlan.mood || '-';
+
+    // SVG Vector Graphics
+    document.getElementById('sceneSvgContainer').innerHTML = generateSceneSvg(scene.svgTheme, scene.visualPlan.title);
+
+    // Text Content
+    document.getElementById('sceneContentHtml').innerHTML = `
+        <h3 style="color:var(--accent-gold); margin-bottom:0.8rem; font-size:1.1rem;">${scene.chapterTitle}</h3>
+        ${scene.contentHtml}
+    `;
+
+    // Nav Buttons Disable State
+    document.getElementById('btnPrevScene').disabled = (currentSceneIndex === 0);
+    document.getElementById('btnNextScene').disabled = (currentSceneIndex === scenesData.length - 1);
+
+    // Update Grid active button
+    updateGridActiveState();
+
+    // Save position
+    saveState();
+}
+
+function nextScene() {
+    if (currentSceneIndex < scenesData.length - 1) {
+        currentSceneIndex++;
+        renderCurrentScene();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+
+function prevScene() {
+    if (currentSceneIndex > 0) {
+        currentSceneIndex--;
+        renderCurrentScene();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+
+function goToScene(id) {
+    const idx = scenesData.findIndex(s => s.id === id);
+    if (idx !== -1) {
+        currentSceneIndex = idx;
+        renderCurrentScene();
+        switchMode('scene');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+
+function renderScenePickerGrid() {
+    const grid = document.getElementById('scenePickerGrid');
+    grid.innerHTML = scenesData.map((s, idx) => `
+        <button class="btn-scene-num ${idx === currentSceneIndex ? 'active' : ''}" id="btnGridNum_${idx}" onclick="currentSceneIndex=${idx}; renderCurrentScene();">
+            ${s.id}
+        </button>
+    `).join('');
+}
+
+function updateGridActiveState() {
+    document.querySelectorAll('.btn-scene-num').forEach((btn, idx) => {
+        if (idx === currentSceneIndex) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+}
+
+// Mobile Touch Swipe Handling
+function handleTouchStart(e) {
+    touchStartX = e.changedTouches[0].screenX;
+}
+
+function handleTouchEnd(e) {
+    touchEndX = e.changedTouches[0].screenX;
+    const swipeThreshold = 50;
+    if (touchEndX < touchStartX - swipeThreshold) {
+        // Swiped Left -> Next Scene (In RTL)
+        nextScene();
+    } else if (touchEndX > touchStartX + swipeThreshold) {
+        // Swiped Right -> Prev Scene
+        prevScene();
+    }
+}
+
+// Auto-play Slideshow
+function toggleSlideshow() {
+    const textEl = document.getElementById('slideshowStateText');
+    if (slideshowTimer) {
+        clearInterval(slideshowTimer);
+        slideshowTimer = null;
+        textEl.textContent = '▶ تشغيل تلقائي';
+    } else {
+        textEl.textContent = '⏸ إيقاف المؤقت';
+        slideshowTimer = setInterval(() => {
+            if (currentSceneIndex < scenesData.length - 1) {
+                nextScene();
+            } else {
+                currentSceneIndex = 0;
+                renderCurrentScene();
+            }
+        }, 12000);
+    }
+}
+
+/* ==========================================================================
+   4. FULL BOOK MODE RENDERER
+   ========================================================================== */
+function renderFullBookView() {
+    const container = document.getElementById('bookChaptersContainer');
+    let html = '';
+    let lastPart = 0;
+
+    scenesData.forEach(scene => {
+        if (scene.partNum !== lastPart) {
+            lastPart = scene.partNum;
+            html += `
+                <div class="part-header" id="part-header-${scene.partNum}">
+                    <div class="part-number">الجزء ${scene.partNum}</div>
+                    <h2 class="part-title">${scene.partTitle}</h2>
+                </div>
+            `;
+        }
+
+        html += `
+            <section id="book-chap-${scene.id}" class="chapter-section">
+                <div class="chapter-header-box">
+                    <h3 class="chapter-title">${scene.chapterTitle}</h3>
+                    <button class="btn-scene-jump" onclick="goToScene(${scene.id})">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 3v18"/><path d="M3 12h18"/></svg>
+                        <span>فتح المشهد ${scene.id} سينمائياً</span>
+                    </button>
+                </div>
+
+                <div class="book-scene-visual-card">
+                    <div class="book-scene-img-wrap" onclick="goToScene(${scene.id})" style="cursor:pointer;">
+                        ${generateSceneSvg(scene.svgTheme, scene.visualPlan.title)}
+                        <div class="book-scene-overlay">
+                            <span class="overlay-scene-tag">المشهد ${scene.id}: ${scene.visualPlan.title}</span>
+                            <span class="overlay-action">عرض سينمائي</span>
+                        </div>
+                    </div>
+                    <div class="book-scene-caption">
+                        <span class="badge badge-gold">الحدث: ${scene.visualPlan.event}</span>
+                    </div>
+                </div>
+
+                <div class="chapter-body">
+                    ${scene.contentHtml}
+                </div>
+            </section>
+        `;
+    });
+
+    container.innerHTML = html;
+}
+
+/* ==========================================================================
+   5. UTILITIES: MODE SWITCH, TOC, FONT SIZE, SEARCH, THEME
+   ========================================================================== */
+function switchMode(mode) {
+    currentMode = mode;
+    const sceneView = document.getElementById('sceneViewMode');
+    const bookView = document.getElementById('bookViewMode');
+    const toggleBtnText = document.getElementById('modeToggleText');
+
+    if (mode === 'scene') {
+        sceneView.classList.add('active');
+        bookView.classList.remove('active');
+        toggleBtnText.textContent = 'عرض الكتاب الكامل';
+    } else {
+        sceneView.classList.remove('active');
+        bookView.classList.add('active');
+        toggleBtnText.textContent = 'العرض السينمائي';
+    }
+}
+
+function toggleViewMode() {
+    switchMode(currentMode === 'scene' ? 'book' : 'scene');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleTheme() {
+    isDarkTheme = !isDarkTheme;
+    if (isDarkTheme) {
+        document.body.classList.remove('light-theme');
+    } else {
+        document.body.classList.add('light-theme');
+    }
+    saveState();
+}
+
+function changeFontSize(delta) {
+    fontBaseSize += delta * 2;
+    if (fontBaseSize < 12) fontBaseSize = 12;
+    if (fontBaseSize > 26) fontBaseSize = 26;
+    document.documentElement.style.setProperty('--font-size-base', fontBaseSize + 'px');
+}
+
+function toggleTocDrawer(show) {
+    const overlay = document.getElementById('drawerOverlay');
+    if (show === undefined) {
+        overlay.classList.toggle('active');
+    } else if (show) {
+        overlay.classList.add('active');
+    } else {
+        overlay.classList.remove('active');
+    }
+}
+
+function renderTocList() {
+    const container = document.getElementById('tocListContainer');
+    container.innerHTML = scenesData.map(s => `
+        <div class="toc-item" onclick="toggleTocDrawer(false); goToScene(${s.id});">
+            <span>${s.chapterTitle}</span>
+            <span class="toc-item-num">المشهد ${s.id}</span>
+        </div>
+    `).join('');
+}
+
+function filterTocAndContent() {
+    const q = document.getElementById('searchInput').value.trim().toLowerCase();
+    const container = document.getElementById('tocListContainer');
+
+    const filtered = scenesData.filter(s => 
+        s.chapterTitle.toLowerCase().includes(q) || 
+        s.partTitle.toLowerCase().includes(q) || 
+        s.visualPlan.title.toLowerCase().includes(q) ||
+        s.contentHtml.toLowerCase().includes(q)
+    );
+
+    container.innerHTML = filtered.map(s => `
+        <div class="toc-item" onclick="toggleTocDrawer(false); goToScene(${s.id});">
+            <span>${s.chapterTitle}</span>
+            <span class="toc-item-num">المشهد ${s.id}</span>
+        </div>
+    `).join('');
+}
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
